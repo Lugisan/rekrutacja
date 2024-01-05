@@ -6,14 +6,15 @@ namespace App\Validator\Base;
 
 use App\Exception\Validator\InvalidArgumentException;
 
-class NotEmptyValidator extends AbstractValidator
+trait NotEmptyValidator
 {
-    public function valid(): void
-    {
-        if (
-            $this->value === null
-            || $this->value === ''
-        ) {
+    /**
+     * @throws InvalidArgumentException
+     */
+    public function validateNotEmpty(
+        ?string $value
+    ): void {
+        if ($value === null || $value === '') {
             throw new InvalidArgumentException('Field cannot be left blank');
         }
     }

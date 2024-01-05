@@ -6,23 +6,21 @@ namespace App\Validator\Base;
 
 use App\Exception\Validator\InvalidArgumentException;
 
-class MaxLengthValidator extends AbstractValidator
+trait MaxLengthValidator
 {
-    public function __construct(
-        string $value,
-        private int $maxLength
-    ) {
-        parent::__construct($value);
-    }
+    abstract private function getMaxLength(): int;
 
-    public function valid(): void
+    /**
+     * @throws InvalidArgumentException
+     */
+    public function validateMaxLength(string $value): void
     {
-        $length = strlen($this->value);
-        if($length > $this->maxLength) {
+        $length = strlen($value);
+        if($length > $this->getMaxLength()) {
             throw new InvalidArgumentException(
                 sprintf(
                     'Field cannot be longer than %d characters!',
-                    $this->maxLength
+                    $this->getMaxLength()
                 )
             );
         }
