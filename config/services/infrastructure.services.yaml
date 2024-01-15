@@ -1,0 +1,19 @@
+services:
+  # default configuration for services in *this* file
+  _defaults:
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+  Infrastructure\Factory\Writer\Xml\EventTypeXmlWriterFactory:
+    class: Infrastructure\Factory\Writer\Xml\EventTypeXmlWriterFactory
+
+  App\Writer\Xml\EventTypeXmlWriter:
+    factory: [ '@Infrastructure\Factory\Writer\Xml\EventTypeXmlWriterFactory', createService ]
+    arguments: [ '@App\Converter\ArrayToXmlConverterInterface' ]
+
+  Infrastructure\Factory\Writer\Xml\UserXmlWriterFactory:
+    class: Infrastructure\Factory\Writer\Xml\UserXmlWriterFactory
+
+  App\Writer\Xml\UserXmlWriter:
+    factory: [ '@Infrastructure\Factory\Writer\Xml\UserXmlWriterFactory', createService ]
+    arguments: [ '@App\Converter\ArrayToXmlConverterInterface' ]

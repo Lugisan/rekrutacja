@@ -1,0 +1,17 @@
+services:
+  # default configuration for services in *this* file
+  _defaults:
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+  App\Utility\UUIDGeneratorInterface:
+    class: Infrastructure\Utility\UUIDGenerator
+
+  App\Converter\ArrayToXmlConverterInterface:
+    class: App\Converter\ArrayToXMLConverter
+
+  App\Writer\Json\JsonWriterInterface:
+    class: App\Writer\Json\JsonWriter
+
+  App\Reader\Json\JsonReaderInterface:
+    class: App\Reader\Json\JsonWriter
